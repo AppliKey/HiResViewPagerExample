@@ -11,8 +11,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import java.io.File;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -73,35 +71,4 @@ public class MainActivity extends AppCompatActivity {
     private void requestReadStoragePermission() {
         requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION_EXTERNAL_STORAGE);
     }
-
-    public static boolean copy(InputStream is, OutputStream os) {
-        if (is == null || os == null) {
-            return false;
-        }
-
-        try {
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = is.read(buffer)) != -1) {
-                os.write(buffer, 0, length);
-            }
-            os.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        } finally {
-            try {
-                is.close();
-            } catch (Exception ignore) {
-            }
-            try {
-                os.close();
-            } catch (Exception ignore) {
-
-            }
-        }
-        return true;
-    }
-
-
 }
